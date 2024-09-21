@@ -35,11 +35,6 @@ const Icon = (props) => {
 
   const iconSrc = iconMap[props.iconName];
 
-  if (!iconSrc) {
-    console.error(`Icon "${props.iconName}" not found`);
-    return null;
-  }
-
   return <img src={iconSrc} alt="Icon" />;
 };
 

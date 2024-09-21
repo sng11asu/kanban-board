@@ -6,13 +6,22 @@ function App() {
   const [tickets, setTickets] = useState();
   const [users, setUsers] = useState();
   const getData = async () => {
-    const res = await fetch(
-      'https://api.quicksell.co/v1/internal/frontend-assignment'
-    );
-    const resJson = await res.json();
-    console.log('Response', resJson);
-    setTickets(resJson.tickets);
-    setUsers(resJson.users);
+    try {
+      const res = await fetch(
+        'https://api.quicksell.co/v1/internal/frontend-assignment'
+      );
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+
+      const resJson = await res.json();
+      console.log('Response', resJson);
+      setTickets(resJson.tickets);
+      setUsers(resJson.users);
+    } catch (error) {
+      console.error('Failed to fetch data:', error);
+    }
   };
 
   useEffect(() => {

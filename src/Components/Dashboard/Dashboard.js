@@ -75,12 +75,9 @@ const Dashboard = ({tickets, users}) => {
         />
       </div>
       <div className="filtered-tickets">
-        {filtered &&
+        {filtered ? (
           Object.keys(filtered)?.map((group) => (
             <div className="groups" key={group}>
-              {/* <h2>
-                {groupingBy === 'priority' ? `Priority: ${group}` : group}
-              </h2> */}
               <ColHeader
                 group={group}
                 groupingBy={groupingBy}
@@ -97,7 +94,10 @@ const Dashboard = ({tickets, users}) => {
                 ))}
               </div>
             </div>
-          ))}
+          ))
+        ) : (
+          <div className="loading-div">Loading...</div>
+        )}
       </div>
     </div>
   );

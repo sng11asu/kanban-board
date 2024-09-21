@@ -1,4 +1,4 @@
-import React, {useState, useRef, useLayoutEffect} from 'react';
+import React, {useState, useRef} from 'react';
 import './Display.css';
 import Icon from '../Icon/Icon';
 const Display = (props) => {
@@ -7,22 +7,29 @@ const Display = (props) => {
   const buttonRef = useRef(null);
 
   const toggleOverlay = () => {
+    const buttonRect = buttonRef.current.getBoundingClientRect();
+
+    setOverlayStyle({
+      top: buttonRect.bottom + window.scrollY + 5,
+      left: buttonRect.left + window.scrollX,
+    });
+
     setIsOverlayVisible(!isOverlayVisible);
   };
 
-  useLayoutEffect(() => {
-    if (isOverlayVisible) {
-      const buttonRect = buttonRef.current.getBoundingClientRect();
-      setOverlayStyle({
-        top: buttonRect.bottom + window.scrollY + 5,
-        left: buttonRect.left + window.scrollX,
-      });
-    }
-  }, [isOverlayVisible]);
-
   return (
     <div>
-      <button onClick={toggleOverlay} ref={buttonRef}>
+      <button
+        onClick={toggleOverlay}
+        ref={buttonRef}
+        style={{
+          border: '1px solid #ccc',
+          borderRadius: '5px',
+          padding: '5px 10px',
+          marginTop: '10px',
+          cursor: 'pointer',
+        }}
+      >
         <span className="display-button">
           <Icon iconName="Display" /> <p className="button-text">Display</p>{' '}
           <Icon iconName="Down" />
@@ -30,8 +37,8 @@ const Display = (props) => {
       </button>
 
       {isOverlayVisible && (
-        <div className="display-overlay" style={overlayStyle}>
-          <div className="display-overlay-content">
+        <div className="disp-overlay" style={overlayStyle}>
+          <div className="disp-overlay-content">
             <p>Grouping</p>
             <select
               className="filter-select"
@@ -43,7 +50,7 @@ const Display = (props) => {
               <option value="priority">Priority</option>
             </select>
           </div>
-          <div className="display-overlay-content">
+          <div className="disp-overlay-content">
             <p>Ordering</p>
             <select
               className="filter-select"
