@@ -1,0 +1,14 @@
+.initials-style{
+    color: white;
+    font-size: 14px;           
+    font-weight: 500;
+    background-color: #02afbb;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    padding: 3px
+  };
+  

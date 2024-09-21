@@ -1,0 +1,29 @@
+.dashboard{
+    
+}
+
+.dash-header{
+    background-color: white;
+    padding: 20px;
+}
+.filtered-tickets{
+    display: flex;
+    padding: 20px;
+}
+
+.groups{
+    margin: 10px;
+}
+
+@media (max-width: 768px) {
+    .filtered-tickets{
+        display: grid;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+ .filtered-tickets{
+    display: flex;
+    flex-wrap: wrap;
+ }   
+}

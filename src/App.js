@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import {useEffect, useState} from 'react';
 import './App.css';
+import Dashboard from './Components/Dashboard/Dashboard';
 
 function App() {
+  const [tickets, setTickets] = useState();
+  const [users, setUsers] = useState();
+  const getData = async () => {
+    const res = await fetch(
+      'https://api.quicksell.co/v1/internal/frontend-assignment'
+    );
+    const resJson = await res.json();
+    console.log('Response', resJson);
+    setTickets(resJson.tickets);
+    setUsers(resJson.users);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Dashboard tickets={tickets} users={users} />
     </div>
   );
 }

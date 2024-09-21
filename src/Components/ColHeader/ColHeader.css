@@ -1,0 +1,13 @@
+.col-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.priority{
+    display: flex;
+    align-items: baseline;
+}
+.priority-title{
+    padding: 0 8px 0 8px;
+}
